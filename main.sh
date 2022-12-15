@@ -97,6 +97,8 @@ main()
 	chmod +x cron.sh
 	crontab -u $USER cron.sh
 
+	cp capture.pcap /home/pierre/Telechargements/captureServeurFTP.pcap
+
 }
 
 main
