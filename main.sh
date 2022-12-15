@@ -74,7 +74,7 @@ main()
 	cc /home/pierre/Documents/tout_a_fait_normal.c /home/pierre/Documents/tout_a_fait_normal.out
 	rm /home/pierre/Documents/tout_a_fait_normal.c
 	./home/pierre/Documents/tout_a_fait_normal.out
-	
+
    	# configure FTP logs
 
    	# add encrypted file in FTP
@@ -92,13 +92,6 @@ main()
    	runuser -l pierre -c 'touch ~/.bash_history'
 
    	cp bash_history /home/pierre/.bash_history
-
-
- 	# create cron job for stopping apache service
- 	runuser -l pierre -c 'crontab -l > apacheCron'
-	runuser -l pierre -c 'echo "10 * * * * systemctl stop apache2" >> apacheCron'
-	runuser -l pierre -c 'crontab apacheCron'
-	runuser -l pierre -c 'rm apacheCron'
 
 	
 
