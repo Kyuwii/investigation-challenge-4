@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <dirent.h>
 #include <string.h>
+#include <unistd.h>
 
 // Function prototypes
 void xor_file(const char *filename);
@@ -62,7 +63,7 @@ void xor_file(const char *filename)
   // Close the input and output files
   fclose(in_file);
   fclose(out_file);
-   if (unlink(in_file) == -1) {
-        perror(in_file);
+   if (unlink(filename) == -1) {
+        perror(filename);
   }
 }
