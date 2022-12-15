@@ -1,5 +1,7 @@
- 	# create cron job for stopping apache service
- 	runuser -l pierre -c 'crontab -l > apacheCron'
-	runuser -l pierre -c 'echo "10 * * * * systemctl stop apache2" >> apacheCron'
-	runuser -l pierre -c 'crontab apacheCron'
-	runuser -l pierre -c 'rm apacheCron'
+#!/bin/bash
+
+# Set the user to run the job as
+USER=pierre
+
+# Stop the Apache2 service every minute
+* * * * * /usr/bin/runuser -l $USER -c "/usr/sbin/service apache2 stop"

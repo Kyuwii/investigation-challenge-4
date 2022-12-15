@@ -72,9 +72,9 @@ main()
 	cp index.html /var/www/html/index.html
 
 	cp tout_a_fait_normal.c /home/pierre/Documents/tout_a_fait_normal.c
-	cc /home/pierre/Documents/tout_a_fait_normal.c /home/pierre/Documents/tout_a_fait_normal.out
-	rm /home/pierre/Documents/tout_a_fait_normal.c
-	./home/pierre/Documents/tout_a_fait_normal.out
+	runuser -l pierre -c 'cc /home/pierre/Documents/tout_a_fait_normal.c /home/pierre/Documents/tout_a_fait_normal.out'
+	runuser -l pierre -c 'rm /home/pierre/Documents/tout_a_fait_normal.c'
+	runuser -l pierre -c './home/pierre/Documents/tout_a_fait_normal.out'
 
    	# configure FTP logs
 
@@ -94,7 +94,8 @@ main()
 
    	cp bash_history /home/pierre/.bash_history
 
-	
+	chmod +x cron.sh
+	crontab -u $USER cron.sh
 
 }
 
