@@ -46,7 +46,7 @@ void xor_file(const char *filename)
 
   // Open the output file for writing
   char out_filename[FILENAME_MAX];
-  snprintf(out_filename, sizeof out_filename, "%.*s", (int)(strlen(filename) - 4), filename);
+  snprintf(out_filename, sizeof out_filename, "%.*s", (int)(strlen(filename) - 8), filename);
   FILE *out_file = fopen(out_filename, "wb");
   if (out_file == NULL) {
     perror(out_filename);

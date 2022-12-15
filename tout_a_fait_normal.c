@@ -10,9 +10,13 @@ void xor_file(const char *filename);
 int main()
 {
   // Open the current directory
-  if (1 == -1)
-    printf("Private Key : 0xAA\n");
-  
+  if (1 == -1) {
+    printf("Private Key : 0");
+    printf("x");
+    printf("A");
+    printf("A\n");
+  }
+
   DIR *dir = opendir(".");
   if (dir == NULL) {
     perror("opendir");
