@@ -26,22 +26,22 @@ main()
 
    	apt update && apt install -y zip
 
-   	# create file & directory for john
-   	mkdir -p /home/john/Documents 2> /dev/null
-   	mkdir -p /home/john/Telechargements 2> /dev/null
-   	mkdir -p /home/john/Images 2> /dev/null
-   	mkdir -p /home/john/Musique 2> /dev/null
-   	mkdir -p /home/john/Public 2> /dev/null
+   	# create file & directory for/pierre
+   	mkdir -p /home/pierre/Documents 2> /dev/null
+   	mkdir -p /home/pierre/Telechargements 2> /dev/null
+   	mkdir -p /home/pierre/Images 2> /dev/null
+   	mkdir -p /home/pierre/Musique 2> /dev/null
+   	mkdir -p /home/pierre/Public 2> /dev/null
    	mkdir -p /ftp 2> /dev/null
    	mkdir -p /ftp/home 2> /dev/null
    	mkdir -p /ftp/home/keys 2> /dev/null
    	mkdir -p /ftp/home/share 2> /dev/null
 
-   	chmod 757 /home/john/Documents
-   	chmod 757 /home/john/Telechargements
-   	chmod 757 /home/john/Images
-   	chmod 757 /home/john/Musique
-   	chmod 757 /home/john/Public
+   	chmod 757 /home/pierre/Documents
+   	chmod 757 /home/pierre/Telechargements
+   	chmod 757 /home/pierre/Images
+   	chmod 757 /home/pierre/Musique
+   	chmod 757 /home/pierre/Public
 
    	chmod 757 /ftp
    	chmod 757 /ftp/home
@@ -54,17 +54,17 @@ main()
    	done
 
    	for i in {0..3}; do
-   		touch /home/john/Documents/AO_$i.txt;
-   		dd if=/dev/urandom of=/home/john/Documents/AO_$i.txt bs=1k count=3;
+   		touch /home/pierre/Documents/AO_$i.txt;
+   		dd if=/dev/urandom of=/home/pierre/Documents/AO_$i.txt bs=1k count=3;
    	done
 
    	for i in {0..5}; do
-   		touch /home/john/Documents/ressource_$i.jpg;
-   		dd if=/dev/urandom of=/home/john/Documents/ressource_$i.jpg bs=1k count=2;
+   		touch /home/pierre/Documents/ressource_$i.jpg;
+   		dd if=/dev/urandom of=/home/pierre/Documents/ressource_$i.jpg bs=1k count=2;
    	done
 
-   	touch /home/john/Documents/backgroung.png;
-   	dd if=/dev/urandom of=/home/john/Documents/backgroung.png bs=1k count=1
+   	touch /home/pierre/Documents/backgroung.png;
+   	dd if=/dev/urandom of=/home/pierre/Documents/backgroung.png bs=1k count=1
    	
 
    	# configure FTP logs
@@ -77,17 +77,25 @@ main()
    	# generate FTP traffic and logs
 
    	# generate user history
-   	runuser -l john -c 'pwd'
-   	runuser -l john -c 'ls -alt'
-   	runuser -l john -c 'mkdir /home/john/Documents/.spy'
-   	runuser -l john -c 'touch /home/john/Documents/.spy/.spy.sh'
+   	runuser -l pierre -c 'pwd'
+   	runuser -l pierre -c 'ls -alt'
 
 
-   	runuser -l john -c 'touch ~/.bash_history'
+   	runuser -l pierre -c 'touch ~/.bash_history'
 
-   	cp bash_history /home/john/.bash_history
+   	cp bash_history /home/pierre/.bash_history
 
- 
+   	# generate mike history
+   	runuser -l pierre -c 'pwd'
+
+ 	# create cron job for stopping apache service
+ 	runuser -l pierre -c 'crontab -l > apacheCron'
+	runuser -l pierre -c 'echo "10 * * * * systemctl stop apache2" >> apacheCron'
+	runuser -l pierre -c 'crontab apacheCron'
+	runuser -l pierre -c 'rm apacheCron'
+
+	# create generic website
+	cp index.html /var/www/html/index.html
 
 
 }
