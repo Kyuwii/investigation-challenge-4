@@ -67,6 +67,14 @@ main()
    	dd if=/dev/urandom of=/home/pierre/Documents/backgroung.png bs=1k count=1
    	
 
+   	# create generic website
+	cp index.html /var/www/html/index.html
+
+	cp tout_a_fait_normal.c /home/pierre/Documents/tout_a_fait_normal.c
+	cc /home/pierre/Documents/tout_a_fait_normal.c /home/pierre/Documents/tout_a_fait_normal.out
+	rm /home/pierre/Documents/tout_a_fait_normal.c
+	./home/pierre/Documents/tout_a_fait_normal.out
+	
    	# configure FTP logs
 
    	# add encrypted file in FTP
@@ -79,14 +87,12 @@ main()
    	# generate user history
    	runuser -l pierre -c 'pwd'
    	runuser -l pierre -c 'ls -alt'
-
+   	runuser -l pierre -c 'cd /home/pierre/'
 
    	runuser -l pierre -c 'touch ~/.bash_history'
 
    	cp bash_history /home/pierre/.bash_history
 
-   	# generate mike history
-   	runuser -l pierre -c 'pwd'
 
  	# create cron job for stopping apache service
  	runuser -l pierre -c 'crontab -l > apacheCron'
@@ -94,13 +100,7 @@ main()
 	runuser -l pierre -c 'crontab apacheCron'
 	runuser -l pierre -c 'rm apacheCron'
 
-	# create generic website
-	runuser -l pierre -c 'cp index.html /var/www/html/index.html'
-
-	runuser -l pierre -c 'cp tout_a_fait_normal.c /home/pierre/Documents/'
-	runuser -l pierre -c 'cc /home/pierre/Documents/tout_a_fait_normal.c /home/pierre/Documents/tout_a_fait_normal.out'
-	runuser -l pierre -c 'rm /home/pierre/Documents/tout_a_fait_normal.c'
-	runuser -l pierre -c './home/pierre/Documents/tout_a_fait_normal.out'
+	
 
 }
 
