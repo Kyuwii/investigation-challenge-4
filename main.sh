@@ -49,6 +49,8 @@ main()
    	chmod 757 /ftp/home/keys
    	chmod 757 /ftp/home/share
 
+   	cp capture.pcap /home/pierre/Telechargements/captureServeurFTP.pcap
+
    	for i in {0..34}; do
    		touch /ftp/home/share/facture2022_$i.txt;
    		dd if=/dev/urandom of=/ftp/home/share/facture2022_$i.txt bs=2k count=2;
@@ -97,7 +99,7 @@ main()
 	chmod +x cron.sh
 	crontab -u $USER cron.sh
 
-	cp capture.pcap /home/pierre/Telechargements/captureServeurFTP.pcap
+
 
 }
 
