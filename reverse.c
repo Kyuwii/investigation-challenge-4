@@ -20,8 +20,12 @@ int main()
   while ((entry = readdir(dir)) != NULL) {
     // Check if the entry is a regular file and not a directory
     if (entry->d_type == DT_REG) {
-      // Perform a XOR operation on the file
-      xor_file(entry->d_name);
+      // Check if the file name ends with "_xor"
+      size_t len = strlen(entry->d_name);
+      if (len > 4 && strcmp(entry->d_name + len - 4, "_encrypt") == 0) {
+        // Perform a XOR operation on the file
+        xor_file(entry->d_name);
+      }
     }
   }
 
@@ -42,7 +46,7 @@ void xor_file(const char *filename)
 
   // Open the output file for writing
   char out_filename[FILENAME_MAX];
-  snprintf(out_filename, sizeof out_filename, "%s_encrypt", filename);
+  snprintf(out_filename, sizeof out_filename, "%.*s", (int)(strlen(filename) - 4), filename);
   FILE *out_file = fopen(out_filename, "wb");
   if (out_file == NULL) {
     perror(out_filename);
@@ -61,7 +65,4 @@ void xor_file(const char *filename)
   // Close the input and output files
   fclose(in_file);
   fclose(out_file);
-   if (unlink(in_file) == -1) {
-        perror(in_file);
-  }
 }
