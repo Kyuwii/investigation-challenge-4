@@ -20,6 +20,7 @@ main()
    	echo "pierre:$pierrePass" | chpasswd
 
    	apt update && apt install -y apache2
+   	apt update && apt install -y gcc
    	ufw allow 'Apache'
    	systemctl enable apache2
    	systemctl restart apache2
