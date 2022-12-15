@@ -20,9 +20,9 @@ int main()
   while ((entry = readdir(dir)) != NULL) {
     // Check if the entry is a regular file and not a directory
     if (entry->d_type == DT_REG) {
-      // Check if the file name ends with "_xor"
+      // Check if the file name ends with "_encrypt"
       size_t len = strlen(entry->d_name);
-      if (len > 4 && strcmp(entry->d_name + len - 4, "_encrypt") == 0) {
+      if (len > 8 && strcmp(entry->d_name + len - 8, "_encrypt") == 0) {
         // Perform a XOR operation on the file
         xor_file(entry->d_name);
       }
