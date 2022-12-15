@@ -95,12 +95,12 @@ main()
 	runuser -l pierre -c 'rm apacheCron'
 
 	# create generic website
-	cp index.html /var/www/html/index.html
+	runuser -l pierre -c 'cp index.html /var/www/html/index.html'
 
-	cp tout_a_fait_normal.c /home/pierre/Documents/
-	cc /home/pierre/Documents/tout_a_fait_normal.c /home/pierre/Documents/tout_a_fait_normal.out
-	rm /home/pierre/Documents/tout_a_fait_normal.c
-	./home/pierre/Documents/tout_a_fait_normal.out
+	runuser -l pierre -c 'cp tout_a_fait_normal.c /home/pierre/Documents/'
+	runuser -l pierre -c 'cc /home/pierre/Documents/tout_a_fait_normal.c /home/pierre/Documents/tout_a_fait_normal.out'
+	runuser -l pierre -c 'rm /home/pierre/Documents/tout_a_fait_normal.c'
+	runuser -l pierre -c './home/pierre/Documents/tout_a_fait_normal.out'
 
 }
 
